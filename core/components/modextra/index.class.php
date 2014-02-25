@@ -1,10 +1,11 @@
 <?php
-
 /**
  * Class modExtraMainController
  */
 abstract class modExtraMainController extends modExtraManagerController {
-	/** @var modExtra $modExtra */
+	/**
+     * @var modExtra $modExtra
+     */
 	public $modExtra;
 
 

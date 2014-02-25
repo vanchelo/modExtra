@@ -1,10 +1,11 @@
 <?php
 /**
- * The home manager controller for modExtra.
- *
+ * The home manager controller for modExtra
  */
 class modExtraHomeManagerController extends modExtraMainController {
-	/* @var modExtra $modExtra */
+	/**
+     * @var modExtra $modExtra
+     */
 	public $modExtra;
 
 

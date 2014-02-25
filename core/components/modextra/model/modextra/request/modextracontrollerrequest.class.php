@@ -1,6 +1,5 @@
 <?php
 
-
 require_once MODX_CORE_PATH . 'model/modx/modrequest.class.php';
 
 /**
@@ -15,10 +14,12 @@ class modExtraControllerRequest extends modRequest {
 
 
 	/**
+     * modExtraControllerRequest Constructor
+     *
 	 * @param modExtra $modExtra
 	 */
-	function __construct(modExtra &$modExtra) {
-		parent :: __construct($modExtra->modx);
+	function __construct(modExtra & $modExtra) {
+		parent::__construct($modExtra->modx);
 		$this->modExtra =& $modExtra;
 	}
 
