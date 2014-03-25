@@ -7,7 +7,7 @@ modExtra.grid.Items = function(config) {
 		baseParams: {
 			action: 'mgr/item/getlist'
 		},
-		fields: ['id', 'name', 'description'],
+		fields: ['id', 'name', 'description', 'published'],
 		autoHeight: true,
 		paging: true,
 		remoteSort: true,
@@ -23,6 +23,10 @@ modExtra.grid.Items = function(config) {
             header: _('description'),
             dataIndex: 'description',
             width: 250
+        },{
+            header: _('published'),
+            dataIndex: 'published',
+            width: 30
         }],
 		tbar: [{
 			text: _('modextra_item_create'),
