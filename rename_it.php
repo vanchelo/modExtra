@@ -15,9 +15,11 @@ $new_name = !empty($_REQUEST['name'])
 $new_name_lower = strtolower($new_name);
 $start = dirname(__FILE__);
 
-if (empty($new_name)) {
+if (empty($new_name))
+{
 	exit("\n".'You need to specify a new name of component in this file on line 9, or send it via $_GET["name"].');
 }
+
 // --
 
 $old_name = 'modExtra';
@@ -42,35 +44,46 @@ rename_extra($end, array($old_name, $old_name_lower), array($new_name, $new_name
  *
  * @return void
  */
-function rename_extra($start_path, $find = array(), $replace = array()) {
+function rename_extra($start_path, $find = array(), $replace = array())
+{
 	$items = scandir($start_path);
 
-	foreach ($items as $item) {
-		if (strpos($item, '.') === 0) {continue;}
+	foreach ($items as $item)
+    {
+		if (strpos($item, '.') === 0)
+        {
+            continue;
+        }
 
 		$old_path = str_replace('//','/', $start_path . '/' . $item);
 
-		if (strpos($old_path, $find[1]) !== false) {
+		if (strpos($old_path, $find[1]) !== false)
+        {
 			$new_path = str_replace('//','/', $start_path . '/' . str_replace($find, $replace, $item));
-			if (!rename($old_path, $new_path)) {
+			if ( ! rename($old_path, $new_path))
+            {
 				exit("\nCould not rename $old_path to $new_path");
 			}
 		}
-		else {
+		else
+        {
 			$new_path = $old_path;
 		}
 
 		echo $new_path ."\n";
 
-		if (is_dir($new_path)) {
+		if (is_dir($new_path))
+        {
 			rename_extra($new_path, $find, $replace);
 		}
-		else {
+		else
+        {
 			$content = file_get_contents($new_path);
 			$content = str_replace($find, $replace, $content);
 
-			if ($item == 'index.class.php') {
-				$content = str_replace($replace[0].'ManagerController', 'modExtraManagerController', $content);
+			if ($item == 'index.class.php')
+            {
+				$content = str_replace($replace[0] . 'ManagerController', 'modExtraManagerController', $content);
 			}
 
 			file_put_contents($new_path, $content);

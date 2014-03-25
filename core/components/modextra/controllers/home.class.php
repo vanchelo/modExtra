@@ -12,14 +12,16 @@ class modExtraHomeManagerController extends modExtraMainController {
 	/**
 	 * @param array $scriptProperties
 	 */
-	public function process(array $scriptProperties = array()) {
+	public function process(array $scriptProperties = [])
+    {
 	}
 
 
 	/**
 	 * @return null|string
 	 */
-	public function getPageTitle() {
+	public function getPageTitle()
+    {
 		return $this->modx->lexicon('modextra');
 	}
 
@@ -27,7 +29,8 @@ class modExtraHomeManagerController extends modExtraMainController {
 	/**
 	 * @return void
 	 */
-	public function loadCustomCssJs() {
+	public function loadCustomCssJs()
+    {
 		$this->addJavascript($this->modExtra->config['jsUrl'] . 'mgr/widgets/items.grid.js');
 		$this->addJavascript($this->modExtra->config['jsUrl'] . 'mgr/widgets/home.panel.js');
 		$this->addJavascript($this->modExtra->config['jsUrl'] . 'mgr/sections/home.js');
@@ -42,7 +45,8 @@ class modExtraHomeManagerController extends modExtraMainController {
 	/**
 	 * @return string
 	 */
-	public function getTemplateFile() {
+	public function getTemplateFile()
+    {
 		return $this->modExtra->config['templatesPath'] . 'home.tpl';
 	}
 }

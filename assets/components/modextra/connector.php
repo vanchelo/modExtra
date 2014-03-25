@@ -12,7 +12,7 @@ $modx->lexicon->load('modextra:default');
 
 /* handle request */
 $path = $modx->getOption('processorsPath', $modx->modextra->config, $corePath . 'processors/');
-$modx->request->handleRequest(array(
+$modx->request->handleRequest([
 	'processors_path' => $path,
-	'location' => '',
-));
+	'location'        => '',
+]);

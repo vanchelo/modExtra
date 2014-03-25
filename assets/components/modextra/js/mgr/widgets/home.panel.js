@@ -1,7 +1,7 @@
 modExtra.panel.Home = function(config) {
 	config = config || {};
 
-	Ext.apply(config,{
+	Ext.apply(config, {
 		border: false,
 		baseCls: 'modx-formpanel',
 		items: [{
@@ -24,7 +24,7 @@ modExtra.panel.Home = function(config) {
 					html: _('modextra_intro_msg'),
 					border: false,
 					bodyCssClass: 'panel-desc',
-					bodyStyle: 'margin-bottom: 10px',
+					bodyStyle: 'margin-bottom: 10px'
 				},{
 					xtype: 'modextra-grid-items',
 					preventRender: true
@@ -32,6 +32,7 @@ modExtra.panel.Home = function(config) {
 			}]
 		}]
 	});
+
 	modExtra.panel.Home.superclass.constructor.call(this, config);
 };
 

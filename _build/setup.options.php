@@ -4,14 +4,17 @@
  */
 $exists = $chunks = false;
 $output = null;
-switch ($options[xPDOTransport::PACKAGE_ACTION]) {
+switch ($options[xPDOTransport::PACKAGE_ACTION])
+{
 	case xPDOTransport::ACTION_INSTALL:
 		break;
 
 	case xPDOTransport::ACTION_UPGRADE:
-		if (!empty($options['attributes']['chunks'])) {
+		if ( ! empty($options['attributes']['chunks']))
+        {
 			$chunks = '<ul id="formCheckboxes" style="height:200px;overflow:auto;">';
-			foreach ($options['attributes']['chunks'] as $k => $v) {
+			foreach ($options['attributes']['chunks'] as $k => $v)
+            {
 				$chunks .= '
 				<li>
 					<label>
@@ -19,6 +22,7 @@ switch ($options[xPDOTransport::PACKAGE_ACTION]) {
 					</label>
 				</li>';
 			}
+
 			$chunks .= '</ul>';
 		}
 
@@ -29,8 +33,10 @@ switch ($options[xPDOTransport::PACKAGE_ACTION]) {
 
 $output = '';
 
-if ($chunks) {
-	switch ($modx->getOption('manager_language')) {
+if ($chunks)
+{
+	switch ($modx->getOption('manager_language'))
+    {
 		case 'ru':
 			$output .= 'Выберите чанки, которые нужно <b>перезаписать</b>:<br/>
 				<small>

@@ -6,6 +6,8 @@ $xpdo_meta_map['modExtraItem'] = array(
     'extends' => 'xPDOSimpleObject',
     'fields' => array(
         'name' => '',
+        'published' => 0,
+        'publishedon' => 0,
         'description' => '',
     ),
     'fieldMeta' => array(
@@ -15,6 +17,20 @@ $xpdo_meta_map['modExtraItem'] = array(
             'phptype' => 'string',
             'null' => false,
             'default' => '',
+        ),
+        'published' => array(
+            'dbtype' => 'tinyint',
+            'precision' => '1',
+            'phptype' => 'boolean',
+            'attributes' => 'unsigned',
+            'default' => 0
+        ),
+        'publishedon' => array(
+            'dbtype' => 'int',
+            'precision' => '20',
+            'phptype' => 'timestamp',
+            'attributes' => 'unsigned',
+            'default' => 0
         ),
         'description' => array(
             'dbtype' => 'text',

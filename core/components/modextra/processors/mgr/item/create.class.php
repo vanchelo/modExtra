@@ -5,22 +5,25 @@
 class modExtraItemCreateProcessor extends modObjectCreateProcessor {
 	public $objectType = 'modExtraItem';
 	public $classKey = 'modExtraItem';
-	public $languageTopics = array('modextra');
+	public $languageTopics = ['modextra'];
 	public $permission = 'new_document';
 
 
 	/**
 	 * @return bool
 	 */
-	public function beforeSet() {
-		$alreadyExists = $this->modx->getObject('modExtraItem', array(
+	public function beforeSet()
+    {
+		$alreadyExists = $this->modx->getCount('modExtraItem', [
 			'name' => $this->getProperty('name'),
-		));
-		if ($alreadyExists) {
+		]);
+
+		if ($alreadyExists)
+        {
 			$this->modx->error->addField('name', $this->modx->lexicon('modextra_item_err_ae'));
 		}
 
-		return !$this->hasErrors();
+		return ! $this->hasErrors();
 	}
 
 }

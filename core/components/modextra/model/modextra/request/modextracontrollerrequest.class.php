@@ -18,7 +18,8 @@ class modExtraControllerRequest extends modRequest {
      *
 	 * @param modExtra $modExtra
 	 */
-	function __construct(modExtra & $modExtra) {
+	public function __construct(modExtra & $modExtra)
+    {
 		parent::__construct($modExtra->modx);
 		$this->modExtra =& $modExtra;
 	}
@@ -30,7 +31,8 @@ class modExtraControllerRequest extends modRequest {
 	 *
 	 * {@inheritdoc}
 	 */
-	public function handleRequest() {
+	public function handleRequest()
+    {
 		$this->loadErrorHandler();
 
 		/* save page to manager object. allow custom actionVar choice for extending classes. */
@@ -48,17 +50,20 @@ class modExtraControllerRequest extends modRequest {
 	 * @access public
 	 * @return boolean True if the response is properly prepared.
 	 */
-	private function _respond() {
+	private function _respond()
+    {
 		$modx =& $this->modx;
 		$modExtra =& $this->modExtra;
 
 		$viewHeader = include $this->modExtra->config['corePath'] . 'controllers/mgr/header.php';
 
 		$f = $this->modExtra->config['corePath'] . 'controllers/mgr/' . $this->actionVar . '.php';
-		if (file_exists($f)) {
+		if (file_exists($f))
+        {
 			$viewOutput = include $f;
 		}
-		else {
+		else
+        {
 			$viewOutput = 'Action not found: ' . $f;
 		}
 

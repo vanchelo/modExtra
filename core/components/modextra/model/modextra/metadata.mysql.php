@@ -1,7 +1,7 @@
 <?php
 
-$xpdo_meta_map = array(
-    'xPDOSimpleObject' => array(
-        0 => 'modExtraItem',
-    ),
-);
+$xpdo_meta_map = [
+    'xPDOSimpleObject' => [
+        'modExtraItem',
+    ],
+];

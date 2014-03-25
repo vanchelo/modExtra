@@ -12,7 +12,8 @@ abstract class modExtraMainController extends modExtraManagerController {
 	/**
 	 * @return void
 	 */
-	public function initialize() {
+	public function initialize()
+    {
 		$corePath = $this->modx->getOption('modextra_core_path', null, $this->modx->getOption('core_path') . 'components/modextra/');
 		require_once $corePath . 'model/modextra/modextra.class.php';
 
@@ -34,15 +35,17 @@ abstract class modExtraMainController extends modExtraManagerController {
 	/**
 	 * @return array
 	 */
-	public function getLanguageTopics() {
-		return array('modextra:default');
+	public function getLanguageTopics()
+    {
+		return ['modextra:default'];
 	}
 
 
 	/**
 	 * @return bool
 	 */
-	public function checkPermissions() {
+	public function checkPermissions()
+    {
 		return true;
 	}
 }
@@ -56,7 +59,8 @@ class IndexManagerController extends modExtraMainController {
 	/**
 	 * @return string
 	 */
-	public static function getDefaultController() {
+	public static function getDefaultController()
+    {
 		return 'home';
 	}
 }

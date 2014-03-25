@@ -15,7 +15,8 @@ class modExtraItemGetListProcessor extends modObjectGetListProcessor {
 	 *
 	 * @return xPDOQuery
 	 */
-	public function prepareQueryBeforeCount(xPDOQuery $c) {
+	public function prepareQueryBeforeCount(xPDOQuery $c)
+    {
 		return $c;
 	}
 
@@ -25,7 +26,8 @@ class modExtraItemGetListProcessor extends modObjectGetListProcessor {
 	 *
 	 * @return array
 	 */
-	public function prepareRow(xPDOObject $object) {
+	public function prepareRow(xPDOObject $object)
+    {
 		$array = $object->toArray();
 
 		return $array;
