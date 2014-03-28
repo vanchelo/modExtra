@@ -18,10 +18,10 @@ class modExtraControllerRequest extends modRequest {
      *
 	 * @param modExtra $modExtra
 	 */
-	public function __construct(modExtra & $modExtra)
+	public function __construct(modExtra $modExtra)
     {
-		parent::__construct($modExtra->modx);
-		$this->modExtra =& $modExtra;
+		parent::__construct($modExtra->getModx());
+		$this->modExtra = $modExtra;
 	}
 
 
@@ -52,8 +52,8 @@ class modExtraControllerRequest extends modRequest {
 	 */
 	private function _respond()
     {
-		$modx =& $this->modx;
-		$modExtra =& $this->modExtra;
+		$modx = $this->modx;
+		$modExtra = $this->modExtra;
 
 		$viewHeader = include $this->modExtra->config['corePath'] . 'controllers/mgr/header.php';
 

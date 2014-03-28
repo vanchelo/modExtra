@@ -1,9 +1,10 @@
 <?php
 
-require 'Controller.php';
+require_once 'Controller.php';
 
 class MainController extends Controller {
 
+    const REQUEST_PARAM = 'item';
     /**
      * @var ItemsRepository
      */
@@ -16,18 +17,26 @@ class MainController extends Controller {
 
     protected function indexAction()
     {
+        /*
+        $items = [];
+        foreach ($this->items->all() as $i)
+        {
+            $items[] = $this->modExtra->getFluent($i);
+        }
+        */
+
+        if (isset($_GET[self::REQUEST_PARAM]) and $id = (int) $_GET[self::REQUEST_PARAM])
+        {
+            return $this->singleAction($id);
+        }
+
         return $this->modExtra->render('items', [
             'items' => $this->items->all()
         ]);
     }
 
-    protected function singleAction()
+    protected function singleAction($id = 0)
     {
-        if ( ! isset($_GET['id']) or ! $id = (int) $_GET['id'])
-        {
-            return $this->error();
-        }
-
         $item = $this->items->get($id);
 
         if ( ! $item)

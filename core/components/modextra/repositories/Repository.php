@@ -42,7 +42,7 @@ abstract class Repository {
         return $q->fetch($asArray);
     }
 
-    public function all($asArray = true, array $columns = [], array $where = [])
+    public function all($pdo = true, array $columns = [], array $where = [])
     {
         $q = $this->newQuery();
 
@@ -61,7 +61,7 @@ abstract class Repository {
             $q->where($where);
         }
 
-        return $q->fetch($asArray);
+        return $q->fetch($pdo);
     }
 
     public function count($where = null)

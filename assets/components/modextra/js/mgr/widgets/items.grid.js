@@ -11,34 +11,48 @@ modExtra.grid.Items = function(config) {
 		autoHeight: true,
 		paging: true,
 		remoteSort: true,
+        clicksToEdit: 'auto',
+        save_action: 'mgr/item/updatefromgrid',
+        autosave: true,
+        copy: false,
 		columns: [{
             header: _('id'),
             dataIndex: 'id',
-            width: 70
+            width: 30,
+            align: 'center'
         },{
             header: _('name'),
             dataIndex: 'name',
-            width: 200
+            width: 150,
+            editor: {
+                xtype: 'textfield',
+                allowBlank: false
+            }
         },{
             header: _('description'),
             dataIndex: 'description',
-            width: 250
+            width: 300
         },{
             header: _('published'),
             dataIndex: 'published',
-            width: 30
+            width: 50,
+            align: 'center',
+            editor: {
+                xtype: 'combo-boolean',
+                renderer: 'boolean'
+            }
         }],
 		tbar: [{
 			text: _('modextra_item_create'),
 			handler: this.createItem,
 			scope: this
 		}],
-		listeners: {
+		/*listeners: {
 			rowDblClick: function(grid, rowIndex, e) {
 				var row = grid.store.getAt(rowIndex);
 				this.updateItem(grid, e, row);
 			}
-		}
+		}*/
 	});
 
 	modExtra.grid.Items.superclass.constructor.call(this, config);
@@ -63,20 +77,19 @@ Ext.extend(modExtra.grid.Items, MODx.grid.Grid, {
 	},
 
 	createItem: function(btn, e) {
-		if (!this.windows.createItem) {
-			this.windows.createItem = MODx.load({
-				xtype: 'modextra-window-item-create',
-				listeners: {
-				    success: {
-                        fn: function() {
-                            this.refresh();
-                        }, scope:this
-                    }
-				}
-			});
-		}
-		this.windows.createItem.fp.getForm().reset();
-		this.windows.createItem.show(e.target);
+        var createItem = MODx.load({
+            xtype: 'modextra-window-item-create',
+            listeners: {
+                success: {
+                    fn: function() {
+                        this.refresh();
+                    }, scope:this
+                }
+            }
+        });
+
+		createItem.fp.getForm().reset();
+		createItem.show(e.target);
 	},
 
 	updateItem: function(btn, e, row) {
@@ -95,22 +108,21 @@ Ext.extend(modExtra.grid.Items, MODx.grid.Grid, {
 			listeners: {
 				success: {
                     fn: function(r) {
-                        if (!this.windows.updateItem) {
-                            this.windows.updateItem = MODx.load({
-                                xtype: 'modextra-window-item-update',
-                                record: r,
-                                listeners: {
-                                    success: {
-                                        fn: function() {
-                                            this.refresh();
-                                        }, scope:this
-                                    }
+                        var updateItem = MODx.load({
+                            xtype: 'modextra-window-item-update',
+                            record: r,
+                            listeners: {
+                                success: {
+                                    fn: function() {
+                                        this.refresh();
+                                    }, scope:this
                                 }
-                            });
-                        }
-                        this.windows.updateItem.fp.getForm().reset();
-                        this.windows.updateItem.fp.getForm().setValues(r.object);
-                        this.windows.updateItem.show(e.target);
+                            }
+                        });
+
+                        updateItem.fp.getForm().reset();
+                        updateItem.fp.getForm().setValues(r.object);
+                        updateItem.show(e.target);
                     }, scope:this
                 }
 			}
@@ -159,14 +171,16 @@ modExtra.window.CreateItem = function(config) {
             fieldLabel: _('name'),
             name: 'name',
             id: 'modextra-' + this.ident + '-name',
-            anchor: '99%'
+            anchor: '100%',
+            allowBlank: false
         },{
             xtype: 'textarea',
             fieldLabel: _('description'),
             name: 'description',
             id: 'modextra-' + this.ident + '-description',
             height: 150,
-            anchor: '99%'
+            anchor: '100%',
+            allowBlank: false
         }],
 		keys: [{
             key: Ext.EventObject.ENTER,

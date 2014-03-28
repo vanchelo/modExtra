@@ -2,14 +2,16 @@
 
 class Query extends xPDOQuery_mysql {
 
-    public function fetch($asArray = true)
+    public function fetch($pdo = true, $fetch_style = PDO::FETCH_ASSOC)
     {
         if (empty($this->query['columns']))
         {
             $this->select($this->xpdo->getSelectColumns($this->getClass()));
         }
 
-        if ( ! $asArray)
+        $this->xpdo->executedQueries++;
+
+        if ( ! $pdo)
         {
             return $this->xpdo->getCollection($this->getClass(), $this);
 
@@ -20,7 +22,7 @@ class Query extends xPDOQuery_mysql {
             return null;
         }
 
-        return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $this->stmt->fetchAll($fetch_style);
     }
 
 }

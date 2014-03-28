@@ -2,28 +2,27 @@
 /**
  * Class modExtraMainController
  */
+
+require_once __DIR__ . '/model/modextra/modextra.class.php';
+
 abstract class modExtraMainController extends modExtraManagerController {
 	/**
      * @var modExtra $modExtra
      */
 	public $modExtra;
 
-
 	/**
 	 * @return void
 	 */
 	public function initialize()
     {
-		$corePath = $this->modx->getOption('modextra_core_path', null, $this->modx->getOption('core_path') . 'components/modextra/');
-		require_once $corePath . 'model/modextra/modextra.class.php';
-
 		$this->modExtra = new modExtra($this->modx);
 
-		$this->addCss($this->modExtra->config['cssUrl'] . 'mgr/main.css');
+        $this->addCss($this->modExtra->config['cssUrl'] . 'mgr/main.css');
 		$this->addJavascript($this->modExtra->config['jsUrl'] . 'mgr/modextra.js');
 		$this->addHtml('<script type="text/javascript">
 		Ext.onReady(function() {
-			modExtra.config = ' . $this->modx->toJSON($this->modExtra->config) . ';
+			modExtra.config = ' . json_encode($this->modExtra->config) . ';
 			modExtra.config.connector_url = "' . $this->modExtra->config['connectorUrl'] . '";
 		});
 		</script>');
@@ -49,7 +48,6 @@ abstract class modExtraMainController extends modExtraManagerController {
 		return true;
 	}
 }
-
 
 /**
  * Class IndexManagerController

@@ -3,9 +3,9 @@
 <?php if ($items): ?>
 
 <ul>
-<?php foreach ($items as $item): ?>
-    <li><?= $item->name ?></li>
-<?php endforeach ?>
+    <?php foreach ($items as $item): ?>
+    <li><a href="[[~[[*id]]]]?item=<?= $item['id'] ?>"><?= $item['name'] ?></a></li>
+    <?php endforeach ?>
 </ul>
 
 <?php else: ?>

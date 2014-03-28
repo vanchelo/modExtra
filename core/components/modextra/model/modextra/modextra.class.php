@@ -1,4 +1,7 @@
 <?php
+
+// require_once __DIR__ . '/../../libraries/helpers.php';
+
 /**
  * The base class for modExtra
  */
@@ -175,6 +178,34 @@ class modExtra {
         }
 
         return new Container((array) $data);
+    }
+
+
+    /**
+     * Fluent Data container
+     *
+     * @param $data
+     * @return Fluent
+     */
+    public function getFluent($data = array())
+    {
+        if ( ! class_exists('Fluent'))
+        {
+            require_once $this->config['librariesPath'] . 'Fluent.php';
+        }
+
+        if (is_object($data) and method_exists($data, 'toArray'))
+        {
+            $data = $data->toArray();
+        }
+
+        return new Fluent((array) $data);
+    }
+
+
+    public function getModx()
+    {
+        return $this->modx;
     }
 
 
