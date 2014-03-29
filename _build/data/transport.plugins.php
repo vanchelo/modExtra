@@ -13,12 +13,12 @@ $tmp = array(
 );
 
 foreach ($tmp as $k => $v) {
-	/* @avr modplugin $plugin */
+	/* @var modPlugin $plugin */
 	$plugin = $modx->newObject('modPlugin');
 	$plugin->fromArray(array(
 		'name' => $k,
 		'category' => 0,
-		'description' => @$v['description'],
+		'description' => ($_=& $v['description']) ?: '',
 		'plugincode' => getSnippetContent($sources['source_core'].'/elements/plugins/plugin.'.$v['file'].'.php'),
 		'static' => BUILD_PLUGIN_STATIC,
 		'source' => 1,
