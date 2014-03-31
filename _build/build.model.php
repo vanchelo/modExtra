@@ -23,6 +23,7 @@ require $sources['build'] . '/includes/functions.php';
 $modx = new modX();
 $modx->initialize('mgr');
 $modx->getService('error', 'error.modError');
+$modx->log(modX::LOG_LEVEL_INFO, 'Model generated.');
 $modx->setLogLevel(modX::LOG_LEVEL_INFO);
 $modx->setLogTarget('ECHO');
 $modx->loadClass('transport.modPackageBuilder', '', false, true);
